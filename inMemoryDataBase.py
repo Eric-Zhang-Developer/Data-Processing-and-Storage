@@ -20,11 +20,16 @@ class inMemoryDataBase:
         # Error Check
         if not self.transationInProgress:
             raise RuntimeError("A Transaction is not in progress")
+        if type(key) != str:
+            raise RuntimeError("Key is not a string")
+        if type(val) != int:
+            raise RuntimeError("Value is not an integer")
+        
         self.transationDataBase[key] = val
     
     def get(self, key: str) -> int:
         # Get the value associated with the key
-        
+
         # If transaction is in progress, read from trasaction database
         # Otherwise, read from main database
         if self.transaction_in_progress:
