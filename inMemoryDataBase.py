@@ -29,13 +29,8 @@ class inMemoryDataBase:
     
     def get(self, key: str) -> int:
         # Get the value associated with the key
-
-        # If transaction is in progress, read from trasaction database
-        # Otherwise, read from main database
-        if self.transaction_in_progress:
-            return self.transationDataBase.get(key, None)
-        else:
-            return self.dataBase.get(key, None)
+        # Only read from main database
+        return self.dataBase.get(key, None)
     
     def commit(self):
         # Commit the current transaction
